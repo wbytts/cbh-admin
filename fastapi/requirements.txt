@@ -1,3 +1,4 @@
+aerich==0.6.3
 aiomysql==0.1.1
 aioredis==2.0.1
 aiosqlite==0.17.0
@@ -13,6 +14,7 @@ colorama==0.4.5
 cos-python-sdk-v5==1.9.15
 crcmod==1.7
 cryptography==3.4.8
+dictdiffer==0.9.0
 dicttoxml==1.7.4
 dnspython==2.2.1
 email-validator==1.2.1
@@ -56,6 +58,7 @@ sqlmodel==0.0.6
 starlette==0.19.1
 tencentcloud-sdk-python==3.0.618
 tomli==2.0.1
+tomlkit==0.11.1
 tortoise-orm==0.19.0
 typing_extensions==4.3.0
 ujson==5.4.0

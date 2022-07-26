@@ -1,11 +1,11 @@
 <!--
- * @Description: 
- * @FilePath: \cbh-admin-vue\src\views\role\index.vue
+ * @Description: 4536447
+ * @FilePath: \fastapi-ui-cbh-vue\src\views\role\index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-26 01:34:29
+ * @LastEditTime: 2022-07-26 22:57:05
  * good good study 📚, day day up ✔️.
 -->
 <template>

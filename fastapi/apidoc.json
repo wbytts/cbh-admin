@@ -1,0 +1,12 @@
+{
+  "name": "api-doc",
+  "version": "0.1.0",
+  "description": "接口文档描述",
+  "title": "接口文档标题",
+  "url" : "http://127.0.0.1:8091",
+  "sampleUrl" : "http://127.0.0.1:8091",
+  "order": [],
+  "template": {
+    "forceLanguage": "zh_cn"
+  }
+}

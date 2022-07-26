@@ -1,0 +1,9 @@
+{
+  "python.linting.enabled": true,
+  "python.linting.mypyEnabled": false,
+  "mypy.dmypyExecutable": "${workspaceFolder}\\venv\\Scripts\\dmypy.exe",
+  "python.formatting.blackArgs": ["--skip-string-normalization", "--line-length 250"],
+  "code-runner.executorMap": {
+    "python": "set PYTHONIOENCODING=utf8 && ${workspaceFolder}\\venv\\Scripts\\python.exe"
+  }
+}

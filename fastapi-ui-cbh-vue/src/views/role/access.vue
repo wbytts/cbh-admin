@@ -7,7 +7,7 @@
         :modal-append-to-body="false"
         :append-to-body="true"
         :close-on-click-modal="false"
-        @close="$emit('close')"
+        @close="$emit('update:visible', false)"
         class="dialog"
     >
         <el-tree
@@ -19,7 +19,7 @@
             node-key="key"
         ></el-tree>
         <el-button type="primary" @click="confirm">确认</el-button>
-        <el-button>取消</el-button>
+        <el-button @close="$emit('update:visible', false)">取消</el-button>
     </el-dialog>
 </template>
 
@@ -47,13 +47,11 @@ export default {
             accessApi.set({ role_id: this.role.id, access: this.$refs.tree.getCheckedKeys() }).then((res) => {
                 if (res.code == 200) {
                     this.$message.success(res.message);
-                    this.$emit.close;
+                    this.$emit('update:visible', false);
                 }
             });
         },
-        doConfirm(params) {
-            accessApi.set(params);
-        },
+        
     },
     async mounted() {
         const loading = this.$loading({

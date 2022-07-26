@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# *- coding:utf-8 -*-
 # type: ignore
 from fastapi import APIRouter, Security
 from tortoise.queryset import F

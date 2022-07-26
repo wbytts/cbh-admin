@@ -18,6 +18,7 @@ class IncomeType(TimestampMixin):
         table_description = "收入类型表"
         table = "income_type"
 
+
 class ExpenditureType(TimestampMixin):
     name = fields.CharField(null=False, max_length=255, description="类型名称")
 
@@ -28,6 +29,7 @@ class ExpenditureType(TimestampMixin):
 
 class UserAssetAccount(TimestampMixin):
     user_id = fields.IntField(description="用户ID")
+    # account_type = fields
 
     class Meta:
         table_description = '资金账户'

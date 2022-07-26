@@ -78,20 +78,6 @@ async def redoc_html():
     )
 
 
-@application.get('/vue-admin-ui/{file_path:path}')
-async def vue_doc(file_path: str = Path(...)):
-    """自己用Vue写的一个 openapi.json 展示界面"""
-    if file_path == '' or file_path == 'index' or file_path == 'index.html':
-        f = open('./admin-ui/dist/index.html')
-        content = f.read()
-        # 临时解决 module 引入方式时，使用fastapi提供访问，报错的问题
-        content = content.replace('type="module" crossorigin', 'defer')
-        f.close()
-        return HTMLResponse(content)
-    else:
-        return FileResponse(f'./admin-ui/dist/{file_path}')
-
-
 # 事件监听
 application.add_event_handler("startup", Events.startup(application))
 application.add_event_handler("shutdown", Events.stopping(application))

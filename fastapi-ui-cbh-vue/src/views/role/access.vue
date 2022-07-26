@@ -4,10 +4,11 @@
         :visible="visible"
         title="绑定权限"
         width="500px"
+        style="height: 500px"
         :modal-append-to-body="false"
         :append-to-body="true"
         :close-on-click-modal="false"
-        @close="$emit('update:visible', false)"
+        @close="$parent.roleAccessVisible = false"
         class="dialog"
     >
         <el-tree
@@ -18,8 +19,10 @@
             ref="tree"
             node-key="key"
         ></el-tree>
-        <el-button type="primary" @click="confirm">确认</el-button>
-        <el-button @close="$emit('update:visible', false)">取消</el-button>
+        <div slot="footer" class="button">
+            <el-button type="primary" @click="confirm">确认</el-button>
+            <el-button @click="$parent.roleAccessVisible = false">取消</el-button>
+        </div>
     </el-dialog>
 </template>
 
@@ -47,11 +50,10 @@ export default {
             accessApi.set({ role_id: this.role.id, access: this.$refs.tree.getCheckedKeys() }).then((res) => {
                 if (res.code == 200) {
                     this.$message.success(res.message);
-                    this.$emit('update:visible', false);
+                    this.$parent.roleAccessVisible = false;
                 }
             });
         },
-        
     },
     async mounted() {
         const loading = this.$loading({
@@ -67,5 +69,5 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>

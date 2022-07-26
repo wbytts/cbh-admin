@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-26 23:26:00
+ * @LastEditTime: 2022-07-27 00:02:54
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -74,7 +74,7 @@
         <!-- 角色创建对话框 -->
         <RoleAddDialog ref="roleAddDialog" @confirm="handleConfirm" />
         <RoleAccess
-            :visible.sync="roleAccessVisible"
+            :visible="roleAccessVisible"
             v-if="roleAccessVisible"
             :role="currentRole"
         />

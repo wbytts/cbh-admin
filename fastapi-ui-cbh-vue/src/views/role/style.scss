@@ -1,0 +1,32 @@
+.pagination {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.buttons {
+    /* border: 1px solid red; */
+    display: inline-block;
+    position: absolute;
+    right: 150px;
+}
+
+/* CSS世界 */
+/* CSS选择器世界 */
+/* CSS新世界 */
+
+.table-container-head {
+    /* border: 1px solid red; */
+    position: relative;
+    height: 40px;
+    > div {
+        display: inline-block;
+        position: absolute;
+    }
+    > div:nth-child(1) {
+        left: 10px;
+        line-height: 40px;
+    }
+    > div:nth-child(2) {
+        right: 10px;
+    }
+}

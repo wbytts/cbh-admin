@@ -11,12 +11,12 @@
         <el-form ref="form" :model="form" :rules="rules" inline>
             <el-row>
                 <el-form-item prop="roleName" label="角色名称">
-                    <el-input 
-                        v-model="form.roleName" 
+                    <el-input
+                        v-model="form.roleName"
                         @keydown.native="keyEvent = $event"
                         @input="handleRoleNameInput"
                         @paste.native="handleRoleNamePaste"
-                ></el-input>
+                    ></el-input>
                 </el-form-item>
             </el-row>
             <el-row>
@@ -41,15 +41,18 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button @click="close">取 消</el-button>
-            <el-button type="primary" @click="handleConfirm">确 定</el-button>
+            <el-button
+                type="primary"
+                @click="handleConfirm"
+                style="background-color:rgb(187, 47, 171);color:white;border:rgb(187, 47, 171) solid 1px"
+            >确 定</el-button>
         </span>
     </el-dialog>
 </template>
 
 <script>
 import _ from "lodash";
-import {validateNoNumber} from '@/utils/validate'
-
+import { validateNoNumber } from "@/utils/validate";
 
 export default {
     props: {},
@@ -65,7 +68,7 @@ export default {
                 roleDesc: "",
             },
             rules: {
-                roleName: [{ validator: validateNoNumber, trigger: "blur" }, ],
+                roleName: [{ validator: validateNoNumber, trigger: "blur" }],
                 roleStatus: [{ required: true, message: "请选择角色状态", trigger: "blur" }],
                 roleDesc: [{ required: true, message: "请填写角色描述", trigger: "blur" }],
             },
@@ -107,7 +110,7 @@ export default {
                     };
                     this.$emit("confirm", params);
                 } else {
-                    console.log('填错的字段', fileds)
+                    console.log("填错的字段", fileds);
                 }
             });
         },
@@ -115,23 +118,23 @@ export default {
             let val = this.form.roleName;
             let key = this.keyEvent.key;
             let curPos = this.keyEvent.target.selectionStart;
-            if(/[0-9\(\)@#$%&]/.test(key)) {
-                let chars = val.split('');
-                chars.splice(curPos-1, 1);
-                this.form.roleName = chars.join('');
+            if (/[0-9\(\)@#$%&]/.test(key)) {
+                let chars = val.split("");
+                chars.splice(curPos - 1, 1);
+                this.form.roleName = chars.join("");
             }
         },
         handleRoleNamePaste(event) {
             const clipboardData = event.clipboardData || window.clipboardData;
-            const text = clipboardData.getData('text/plain');
-            if(/[0-9\(\)@#$%&]/.test(text)) {
-                setTimeout(() => this.form.roleName = '');
+            const text = clipboardData.getData("text/plain");
+            if (/[0-9\(\)@#$%&]/.test(text)) {
+                setTimeout(() => (this.form.roleName = ""));
                 this.$message.error("粘贴的数据不合法!!!");
                 return false;
             } else {
                 this.$message.success("粘贴成功!");
             }
-        }
+        },
     },
 };
 </script>

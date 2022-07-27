@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-15 22:40:13
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-27 23:50:47
+ * @LastEditTime: 2022-07-28 01:27:00
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -13,7 +13,7 @@
     <el-menu
       :default-active="$store.state.currentMenuKey"
       class="el-menu-vertical-demo"
-      background-color="#373030"
+      background-color="#671a58"
       text-color="#fff"
       active-text-color="#ffd04b"
     >
@@ -36,4 +36,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .el-menu-item.is-active {
+    color: rgb(254, 254, 254) !important;
+    background-color: rgb(180, 132, 174) !important
+}
 </style>

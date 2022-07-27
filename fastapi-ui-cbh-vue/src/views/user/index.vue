@@ -1,11 +1,11 @@
 <!--
  * @Description: 
- * @FilePath: \cbh-admin-vue\src\views\user\index.vue
+ * @FilePath: \fastapi-ui-cbh-vue\src\views\user\index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-24 17:44:43
+ * @LastEditTime: 2022-07-28 00:57:00
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -31,4 +31,7 @@ export default {
 </script>
 
 <style>
+.div {
+    background-color: rgb(255, 189, 247);
+}
 </style>

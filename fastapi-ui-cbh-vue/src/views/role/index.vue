@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-28 00:26:16
+ * @LastEditTime: 2022-07-28 01:47:16
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -26,34 +26,34 @@
                 </el-form-item>
                 <div class="buttons">
                     <!-- style="" -->
-                    <el-button type="primary"  @click="handleQuery">查询</el-button>
-                    <el-button @click="handleReset">重置</el-button>
+                    <el-button @click="handleQuery" style="background-color:rgb(187, 47, 171);color:white" >查询</el-button>
+                    <el-button @click="handleReset" style="background-color:rgb(187, 47, 171);color:white" >重置</el-button>
                 </div>
             </el-form>
         </div>
-        <div class="table-container" >
+        <div class="table-container">
             <div class="table-container-head">
                 <div>所有角色</div>
                 <div>
                     <el-button
-                        style="background-color:rgb(187, 47, 171);color:white"
+                        style="background-color:rgb(187, 47, 171);color:white;width:150px"
                         @click="$refs.roleAddDialog.show('角色新增')"
                     >创建角色</el-button>
                 </div>
             </div>
-            <el-table :data="roleList" border>
+            <el-table :data="roleList" border :header-cell-style="headClass">
                 <el-table-column type="index" label="序号" width="50"></el-table-column>
-                <el-table-column prop="role_name" label="角色名称" width="250"></el-table-column>
+                <el-table-column prop="role_name" label="角色名称" width="200"></el-table-column>
                 <el-table-column prop="role_desc" label="备注" width="200"></el-table-column>
                 <el-table-column prop="create_time" label="创建日期" width="250">
                     <template slot-scope="{row}">{{row.create_time | dateFormat}}</template>
                 </el-table-column>
-                <el-table-column prop="role_status" label="状态" width="75" align="center">
+                <el-table-column prop="role_status" label="状态" width="150" align="center">
                     <template slot-scope="{ row }">
                         <el-switch
                             v-model="row.role_status"
-                            active-color="#13ce66"
-                            inactive-color="#ff4949"
+                            active-color="rgb(187, 47, 171)"
+                            inactive-color="rgb(255, 189, 247)"
                             @change="handleStatusChange(row)"
                         ></el-switch>
                     </template>
@@ -62,21 +62,26 @@
                     <!-- vue2中template中不允许出现多个标签 -->
                     <template slot-scope="{ row }">
                         <div>
-                            <el-button size="mini" @click="handleEdit(row)">编辑</el-button>
-                            <el-button size="mini" @click="handleAccess(row)">权限</el-button>
-                            <el-button size="mini" @click="handleDelete(row)">删除</el-button>
+                            <el-button size="mini" @click="handleEdit(row)" class="form-boder">编辑</el-button>
+                            <el-button size="mini" @click="handleAccess(row)" class="form-boder">权限</el-button>
+                            <el-button size="mini" @click="handleDelete(row)" class="form-boder">删除</el-button>
                         </div>
                     </template>
                 </el-table-column>
             </el-table>
             <!-- 分页组件 -->
             <div class="pagination">
-                <cbh-pagination :pageInfo.sync="pageInfo" align="center" :updateFunc="queryList" />
+                <cbh-pagination
+                    :pageInfo.sync="pageInfo"
+                    align="center"
+                    :updateFunc="queryList"
+                    background="rgb(187, 47, 171)"
+                />
             </div>
         </div>
 
         <!-- 角色创建对话框 -->
-        <RoleAddDialog  ref="roleAddDialog" @confirm="handleConfirm" />
+        <RoleAddDialog ref="roleAddDialog" @confirm="handleConfirm" />
         <RoleAccess :visible="roleAccessVisible" v-if="roleAccessVisible" :role="currentRole" />
     </div>
 </template>
@@ -183,6 +188,10 @@ export default {
                 this.pageInfo.total = res.total;
             });
         },
+        // 表头样式修改
+        headClass() {
+            return "text-align:center ;background-color:rgb(187, 47, 171);color:white";
+        },
     },
     created() {
         this.queryList();
@@ -202,5 +211,25 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 0 !important;
+}
+
+.table-container-head {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: rgb(187, 47, 171) !important;
+}
+
+.form-boder:hover {
+    background-color: rgb(187, 47, 171);
+    color: white;
+    border: rgb(187, 47, 171) solid 1px;
+}
+.form-boder:focus{
+    background-color: rgb(187, 47, 171);
+    color: white;
+    border: rgb(187, 47, 171) solid 1px;    
 }
 </style>

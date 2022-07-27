@@ -25,7 +25,6 @@ async def user_add(post: user.CreateUser):
     """
     创建用户
     :param post: CreateUser
-    :return:
     """
     # 过滤用户，如果用户已存在，则不能创建
     get_user = await User.get_or_none(username=post.username)

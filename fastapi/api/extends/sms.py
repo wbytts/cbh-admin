@@ -5,9 +5,7 @@
 @Des: 腾讯云云短信SMS
 """
 from tencentcloud.common import credential
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import (
-    TencentCloudSDKException,
-)
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 
 # 导入 SMS 模块的client Models
 from tencentcloud.sms.v20190711 import sms_client, models

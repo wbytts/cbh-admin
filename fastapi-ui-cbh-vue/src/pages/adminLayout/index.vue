@@ -1,11 +1,11 @@
 <!--
  * @Description: 
- * @FilePath: \cbh-admin-vue\src\pages\adminLayout\index.vue
+ * @FilePath: \fastapi-ui-cbh-vue\src\pages\adminLayout\index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-23 21:45:16
+ * @LastEditTime: 2022-07-27 23:04:56
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -58,15 +58,15 @@ export default {
   /* bottom: 0; */
   left: 0;
   right: 0;
-  background-color: pink;
+  background-color: rgb(252, 193, 53);
   .title {
     display: inline-block;
     text-align: center;
     line-height: 40px;
-    background: rgba(0, 0, 0, 0.76);
+    background: rgb(252, 193, 53);
     width: 200px;
     height: 40px;
-    color: white;
+    color: black;
   }
 }
 .body {
@@ -76,7 +76,7 @@ export default {
   bottom: 0;
   .el-container {
     display: inline-block;
-    background-color: #140858;
+    background-color: #000000;
     width: 200px;
     height: calc(100vh - 40px);
     .el-aside {

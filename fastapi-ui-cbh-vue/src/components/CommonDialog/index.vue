@@ -12,17 +12,17 @@ export default {
   methods: {
       handleDialogShow() {
 
-        const modal = useNiceModal('对话框标识');
-        modal.show(options)
-        .then(result => {}) // 点确定, Promise 执行 resolve
-        .catch(() => {}); // 点取消，Promise 执行 reject
+        // const modal = useNiceModal('对话框标识');
+        // modal.show(options)
+        // .then(result => {}) // 点确定, Promise 执行 resolve
+        // .catch(() => {}); // 点取消，Promise 执行 reject
 
       }
   },
   computed: {},
   watch: {},
   mounted() {},
-  beforeDestroy(),
+  beforeDestroy() {},
 };
 </script>
 

@@ -5,4 +5,5 @@
 </template>
 
 <style lang="scss">
+@import url(./style/element-ui.scss);
 </style>

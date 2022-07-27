@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-15 22:40:13
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-27 23:06:22
+ * @LastEditTime: 2022-07-27 23:50:47
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -13,7 +13,7 @@
     <el-menu
       :default-active="$store.state.currentMenuKey"
       class="el-menu-vertical-demo"
-      background-color="black"
+      background-color="#373030"
       text-color="#fff"
       active-text-color="#ffd04b"
     >

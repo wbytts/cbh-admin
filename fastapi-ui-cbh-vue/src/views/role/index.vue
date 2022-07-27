@@ -5,13 +5,13 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-27 00:02:54
+ * @LastEditTime: 2022-07-28 00:26:16
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="container cbh-scroll">
         <div class="form-container">
-            <el-form :model="form" inline>
+            <el-form class="form" :model="form" inline>
                 <el-form-item label="角色名称:">
                     <el-input v-model="form.roleName" size="mini" placeholder="请输入角色名"></el-input>
                 </el-form-item>
@@ -25,16 +25,20 @@
                     ></el-date-picker>
                 </el-form-item>
                 <div class="buttons">
-                    <el-button type="primary" @click="handleQuery">查询</el-button>
+                    <!-- style="" -->
+                    <el-button type="primary"  @click="handleQuery">查询</el-button>
                     <el-button @click="handleReset">重置</el-button>
                 </div>
             </el-form>
         </div>
-        <div class="table-container">
+        <div class="table-container" >
             <div class="table-container-head">
                 <div>所有角色</div>
                 <div>
-                    <el-button type="primary" @click="$refs.roleAddDialog.show('角色新增')">创建角色</el-button>
+                    <el-button
+                        style="background-color:rgb(187, 47, 171);color:white"
+                        @click="$refs.roleAddDialog.show('角色新增')"
+                    >创建角色</el-button>
                 </div>
             </div>
             <el-table :data="roleList" border>
@@ -72,12 +76,8 @@
         </div>
 
         <!-- 角色创建对话框 -->
-        <RoleAddDialog ref="roleAddDialog" @confirm="handleConfirm" />
-        <RoleAccess
-            :visible="roleAccessVisible"
-            v-if="roleAccessVisible"
-            :role="currentRole"
-        />
+        <RoleAddDialog  ref="roleAddDialog" @confirm="handleConfirm" />
+        <RoleAccess :visible="roleAccessVisible" v-if="roleAccessVisible" :role="currentRole" />
     </div>
 </template>
 
@@ -192,4 +192,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "./style.scss";
+.buttons {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+.el-form.form.el-form--inline,
+.el-form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0 !important;
+}
 </style>

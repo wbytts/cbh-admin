@@ -8,8 +8,8 @@ export function doPost(url, params) {
         }
       }
     };
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(params));
   });
 }

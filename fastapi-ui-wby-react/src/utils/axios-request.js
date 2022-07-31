@@ -1,13 +1,3 @@
-/**
- * @Description:
- * @FilePath: /fastapi-ui-wby-react/src/utils/axios-request.js
- * @**************************************************
- * @Author: BingYi
- * @Date: 2022-07-27 10:00:02
- * @LastEditors: BingYi
- * @LastEditTime: 2022-07-27 11:08:45
- * @motto: good good study 📚, day day up ✔️.
- */
 import axios from 'axios';
 
 // #################################默认请求实例#################################

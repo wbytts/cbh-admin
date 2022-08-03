@@ -5,24 +5,20 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-03 22:59:45
+ * @LastEditTime: 2022-08-04 03:19:37
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="admin-page">
         <div class="header">
             <div class="title">CBH管理系统</div>
-            <el-col>
-                <el-dropdown class="exit-btn">
-                    <div class="user">
-                        <div class="user-avatar"></div>
-                        <div class="user-name"></div>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>123</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </div>
-                </el-dropdown>
-            </el-col>
+            <el-dropdown class="el-dropdown-user" @command="userControl">
+                <div class="user-profile"></div>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item cmmand="1">1234</el-dropdown-item>
+                    <el-dropdown-item divided command="2">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
         </div>
         <div class="body">
             <div class="el-container">
@@ -53,7 +49,15 @@ export default {
     data() {
         return {};
     },
-    methods: {},
+    methods: {
+        userControl(command) {
+            if(command==2){
+                localStorage.removeItem("token");
+                this.$message("已退出");
+                this.$router.push("/login");
+            }
+        }
+    },
     //生命周必须是一个函数
     beforeCreate() {
         this.$store.dispatch("getRoleIds");
@@ -71,7 +75,6 @@ export default {
     right: 0;
     background-color: rgb(194, 41, 176);
     height: 45px;
-
     .title {
         display: inline-block;
         text-align: center;
@@ -81,26 +84,18 @@ export default {
         height: 45px;
         color: rgb(251, 250, 250);
     }
-    .exit-btn {
-        margin-right: 15px;
+    .el-dropdown-user {
         position: absolute;
-        width: 150px;
-        height: 45px;
-        top: 0;
         right: 0;
-        display: inline-block;
-        background: red;
-        .user {
-            display: inline-block;
-            height: 45px;
-            line-height: 45px;
-            vertical-align: center;
-            .user-avatar {
-                height: 35px;
-                width: 35px;
-                border-radius: 50%;
-                border: 1px solid white;
-            }
+        margin-right: 25px;
+        line-height: 45px;
+        height: 45px;
+        .user-profile {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid white;
         }
     }
 }

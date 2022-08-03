@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-03 22:23:27
+ * @LastEditTime: 2022-08-03 23:52:33
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -42,13 +42,13 @@
                 </div>
             </div>
             <el-table :data="roleList" border :header-cell-style="headClass">
-                <el-table-column type="index" label="序号" width="50"></el-table-column>
-                <el-table-column prop="role_name" label="角色名称" width="200"></el-table-column>
-                <el-table-column prop="role_desc" label="备注" width="200"></el-table-column>
+                <el-table-column type="index" label="序号" width="80"></el-table-column>
+                <el-table-column prop="role_name" label="角色名称" min-width="200"></el-table-column>
+                <el-table-column prop="role_desc" label="备注" min-width="200"></el-table-column>
                 <el-table-column prop="create_time" label="创建日期" width="250">
                     <template slot-scope="{row}">{{row.create_time | dateFormat}}</template>
                 </el-table-column>
-                <el-table-column prop="role_status" label="状态" width="150" align="center">
+                <el-table-column prop="role_status" label="状态" min-width="150" align="center">
                     <template slot-scope="{ row }">
                         <el-switch
                             v-model="row.role_status"
@@ -58,7 +58,7 @@
                         ></el-switch>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" width="250" fixed="right">
+                <el-table-column label="操作"  min-width="220" align="center" fixed="right">
                     <template slot-scope="{ row }">
                         <div>
                             <el-button size="mini" @click="handleEdit(row)" class="form-boder">编辑</el-button>

@@ -93,6 +93,8 @@ application.add_exception_handler(OperationalError, Exceptions.mysql_operational
 
 # 中间件
 application.add_middleware(Middleware.BaseMiddleware)
+
+
 # 允许跨域
 application.add_middleware(
     CORSMiddleware,
@@ -101,6 +103,8 @@ application.add_middleware(
     allow_methods=settings.CORS_ALLOW_METHODS,
     allow_headers=settings.CORS_ALLOW_HEADERS,
 )
+
+
 application.add_middleware(
     SessionMiddleware,
     secret_key=settings.SECRET_KEY,

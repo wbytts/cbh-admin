@@ -1,11 +1,11 @@
 <!--
  * @Description: asfgdgjhkl
- * @FilePath: \fastapi-ui-cbh-vue\src\views\role\index.vue
+ * @FilePath: \frontend-codesd:\projects\xxxxxxxx\github\wbytts\cbh-admin\fastapi-ui-cbh-vue\src\views\role\index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-28 01:47:16
+ * @LastEditTime: 2022-08-03 22:23:27
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -59,7 +59,6 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="250" fixed="right">
-                    <!-- vue2中template中不允许出现多个标签 -->
                     <template slot-scope="{ row }">
                         <div>
                             <el-button size="mini" @click="handleEdit(row)" class="form-boder">编辑</el-button>
@@ -138,7 +137,9 @@ export default {
             this.doEdit(row);
         },
         // 点击删除操作
+        // @让用户确认一下("是否确认要删除")
         handleDelete(row) {
+            // this.doDelete(row)
             this.$confirm("是否确认删除此角色", "提示", confirmConfig)
                 .then(() => this.doDelete(row))
                 .catch(() => this.$message.info("删除已取消"));

@@ -78,6 +78,21 @@ async def redoc_html():
     )
 
 
+@application.get('/cbh-admin/{file_path:path}')
+async def cbh_admin(file_path: str = Path(...)):
+    if file_path == '' or file_path == 'index' or file_path == 'index.html':
+        f = open('/root/projects/cbh-admin/fastapi-ui-cbh-vue/dist/index.html')
+        content = f.read()
+        # 临时解决 module 引入方式时，使用fastapi提供访问，报错的问题
+        content = content.replace('type="module" crossorigin', 'defer')
+        f.close()
+        return HTMLResponse(content)
+    else:
+        return FileResponse(f'/root/projects/cbh-admin/fastapi-ui-cbh-vue/dist/{file_path}')
+
+
+
+
 # 事件监听
 application.add_event_handler("startup", Events.startup(application))
 application.add_event_handler("shutdown", Events.stopping(application))
@@ -123,4 +138,7 @@ app = application
 
 
 
-os.system("chcp & cls")
+# os.system("chcp & cls")
+
+
+# uvicorn app:app --reload --port 8888 --host 0.0.0.0

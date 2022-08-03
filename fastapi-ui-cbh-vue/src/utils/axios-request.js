@@ -11,6 +11,7 @@
 import axios from "axios";
 
 const service = axios.create({
+  // baseURL: "http://39.96.162.54:8888/api/v1",
   baseURL: "/api/v1",
   timeout: 6000, // 六秒不返回结果，报错（也可以重试）
   headers: {

@@ -14,7 +14,7 @@ import VueCompositionAPI from '@vue/composition-api'
 import moment from 'moment'
 // import './style/reset.scss'
 
-import _ from 'lodash' 
+import _ from 'lodash'
 
 // _.cloneDeep(obj)
 
@@ -35,4 +35,6 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+
 

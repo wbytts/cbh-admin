@@ -231,6 +231,6 @@ export default {
 .form-boder:focus{
     background-color: rgb(187, 47, 171);
     color: white;
-    border: rgb(187, 47, 171) solid 1px;    
+    border: rgb(187, 47, 171) solid 1px;
 }
 </style>

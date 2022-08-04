@@ -1,11 +1,11 @@
 <!--
- * @Description: 
- * @FilePath: \frontend-codesd:\projects\xxxxxxxx\github\wbytts\cbh-admin\fastapi-ui-cbh-vue\src\pages\adminLayout\index.vue
+ * @Description:
+ * @FilePath: /front-end-demose:/my-projects/cbh-admin/fastapi-ui-cbh-vue/src/pages/adminLayout/index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
- * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-04 03:19:37
+ * @LastEditors: BingYi
+ * @LastEditTime: 2022-08-04 14:11:08
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -15,8 +15,9 @@
             <el-dropdown class="el-dropdown-user" @command="userControl">
                 <div class="user-profile"></div>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item cmmand="1">1234</el-dropdown-item>
-                    <el-dropdown-item divided command="2">退出登录</el-dropdown-item>
+                    <!-- <el-dropdown-item cmmand="1">1234</el-dropdown-item>
+                    <el-dropdown-item divided command="2">退出登录</el-dropdown-item> -->
+                    <el-dropdown-item v-for="item in commands" :key="item.id" :divided="item.divided">{{item.name}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -47,15 +48,25 @@ export default {
     },
     //data必须是一个函数
     data() {
-        return {};
+        return {
+            commands: [
+                { id: 1, name: '1234', func: 'handle1234' },
+                { id: 2, name: '退出登录', func: 'handleLogout', divided: true }
+            ]
+        };
     },
     methods: {
+        handle1234() {
+
+        },
+        handleLogout() {
+            localStorage.removeItem("token");
+            this.$message("已退出");
+            this.$router.push("/login");
+        },
         userControl(command) {
-            if(command==2){
-                localStorage.removeItem("token");
-                this.$message("已退出");
-                this.$router.push("/login");
-            }
+            const funcName = this.commands.filter(item => item.id === command)[0].func;
+            this[funcName]();
         }
     },
     //生命周必须是一个函数
@@ -132,3 +143,5 @@ export default {
     border-right: none !important;
 }
 </style>
+
+

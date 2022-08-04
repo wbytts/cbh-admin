@@ -1,11 +1,11 @@
 /*
  * @Description:
- * @FilePath: \cbh-admin-vue\src\api\user.js
+ * @FilePath: \frontend-codesd:\projects\xxxxxxxx\github\wbytts\cbh-admin\fastapi-ui-cbh-vue\src\api\user.js
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-14 00:16:39
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-21 22:38:08
+ * @LastEditTime: 2022-08-05 02:54:57
  * good good study 📚, day day up ✔️.
  */
 import { doPost } from "@/utils/xhr-util";
@@ -18,4 +18,7 @@ export default {
   getCurrentUser(params) {
     return service.get("/admin/user/info", { params });
   },
+  queryList(params) {
+    return service.get("/admin/user", { params });
+  }
 };

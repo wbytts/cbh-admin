@@ -1,25 +1,32 @@
 <!--
  * @Description:
- * @FilePath: /front-end-demose:/my-projects/cbh-admin/fastapi-ui-cbh-vue/src/pages/adminLayout/index.vue
+ * @FilePath: \frontend-codesd:\projects\xxxxxxxx\github\wbytts\cbh-admin\fastapi-ui-cbh-vue\src\pages\adminLayout\index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
- * @LastEditors: BingYi
- * @LastEditTime: 2022-08-04 14:11:08
+ * @LastEditors: 陈炳翰
+ * @LastEditTime: 2022-08-04 23:06:07
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="admin-page">
         <div class="header">
             <div class="title">CBH管理系统</div>
-            <el-dropdown class="el-dropdown-user" @command="userControl">
-                <div class="user-profile"></div>
-                <el-dropdown-menu slot="dropdown">
-                    <!-- <el-dropdown-item cmmand="1">1234</el-dropdown-item>
-                    <el-dropdown-item divided command="2">退出登录</el-dropdown-item> -->
-                    <el-dropdown-item v-for="item in commands" :key="item.id" :divided="item.divided">{{item.name}}</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <div class="user">
+                <el-dropdown @command="userControl">
+                    <div class="user-profile">头像</div>
+                    <el-dropdown-menu slot="dropdown">
+                        <!-- <el-dropdown-item cmmand="1">1234</el-dropdown-item>
+                        <el-dropdown-item divided command="2">退出登录</el-dropdown-item>-->
+                        <el-dropdown-item
+                            v-for="item in commands"
+                            :command="item.id"
+                            :key="item.id"
+                            :divided="item.divided"
+                        >{{item.name}}</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
         </div>
         <div class="body">
             <div class="el-container">
@@ -50,24 +57,22 @@ export default {
     data() {
         return {
             commands: [
-                { id: 1, name: '1234', func: 'handle1234' },
-                { id: 2, name: '退出登录', func: 'handleLogout', divided: true }
-            ]
+                { id: 1, name: "1234", func: "handle1234" },
+                { id: 2, name: "退出登录", func: "handleLogout", divided: true },
+            ],
         };
     },
     methods: {
-        handle1234() {
-
-        },
+        handle1234() {},
         handleLogout() {
             localStorage.removeItem("token");
             this.$message("已退出");
             this.$router.push("/login");
         },
         userControl(command) {
-            const funcName = this.commands.filter(item => item.id === command)[0].func;
+            const funcName = this.commands.filter((item) => item.id === command)[0].func;
             this[funcName]();
-        }
+        },
     },
     //生命周必须是一个函数
     beforeCreate() {
@@ -95,13 +100,16 @@ export default {
         height: 45px;
         color: rgb(251, 250, 250);
     }
-    .el-dropdown-user {
+    .user {
+        display: flex;
         position: absolute;
         right: 0;
         margin-right: 25px;
-        line-height: 45px;
-        height: 45px;
+        top: 50%;
+        transform: translateY(-50%);
         .user-profile {
+            text-align: center;
+            line-height: 35px;
             height: 35px;
             width: 35px;
             border-radius: 50%;

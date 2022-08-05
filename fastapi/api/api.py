@@ -7,7 +7,6 @@ from api.endpoints.test.test import test_oath2
 from api.endpoints.sys import user, role, access, menu
 from api.websocket import admin_chat
 from api.extends import sms, wechat
-import api.endpoints.money_record as money_record
 
 # API路由
 api_router = APIRouter(prefix="/api/v1")

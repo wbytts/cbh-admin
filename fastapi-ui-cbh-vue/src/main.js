@@ -20,6 +20,7 @@ import _ from 'lodash'
 
 
 // Vue插件
+// ElementUI.Input.props.size.default = 'mini';
 Vue.use(ElementUI);
 Vue.use(VueCompositionAPI)
 

@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-05 03:31:30
+ * @LastEditTime: 2022-08-07 04:16:32
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -25,8 +25,16 @@
                     <el-select size="mini"></el-select>
                 </el-form-item>
                 <div class="buttons">
-                    <el-button style="background-color:rgb(187, 47, 171);color:white" size="middle">查询</el-button>
-                    <el-button style="background-color:rgb(187, 47, 171);color:white" size="middle">重置</el-button>
+                    <el-button
+                        style="background-color:rgb(187, 47, 171);color:white"
+                        size="middle"
+                        @click="handleQuery"
+                    >查询</el-button>
+                    <el-button
+                        style="background-color:rgb(187, 47, 171);color:white"
+                        size="middle"
+                        @click="handleReset"
+                    >重置</el-button>
                 </div>
             </el-form>
         </div>
@@ -43,23 +51,44 @@
                     <el-table-column prop="user_phone" label="手机号" width="80"></el-table-column>
                     <el-table-column prop="user_email" label="邮箱" width="80"></el-table-column>
                     <el-table-column prop="create_time" label="创建日期" width="250"></el-table-column>
-                    <el-table-column prop="user_status" label="状态" width="80"></el-table-column>
+                    <el-table-column label="状态" width="80">
+                        <template slot-scope="{ row }">
+                            <div>
+                                <el-switch
+                                    v-model="row.user_status"
+                                    inactive-color="rgb(255, 189, 247)"
+                                    active-color="rgb(187, 47, 171)"
+                                    @change="handleStatusChange"
+                                    v-bind:disabled="$store.state.userInfo.user_type === false"
+                                ></el-switch>
+                            </div>
+                        </template>
+                    </el-table-column>
                     <el-table-column type="index" label="操作" width="250">
-                        <el-button>角色</el-button>
-                        <el-button>编辑</el-button>
-                        <el-button>删除</el-button>
+                        <el-button size="mini">角色</el-button>
+                        <el-button size="mini">编辑</el-button>
+                        <el-button size="mini">删除</el-button>
                     </el-table-column>
                 </el-table>
+            </div>
+            <div class="pagination">
+                <cbh-pagination
+                    :pageInfo.sync="pageInfo"
+                    align="center"
+                    :updateFunc="queryList"
+                    background="rgb(187, 47, 171)"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import CbhPagination from "@/components/CbhPagination/index.vue";
 import userApi from "@/api/user.js";
 import { pageInfo } from "@/utils/element-config";
 export default {
-    components: {},
+    components: {CbhPagination},
     data() {
         return {
             userList: [],
@@ -67,6 +96,23 @@ export default {
         };
     },
     methods: {
+        //查询功能
+        handleQuery() {},
+        //更改状态
+        handleStatusChange(row) {
+            row.user_statue = !row.user_statue;
+            this.doEdit(row);
+        },
+        //修改用户信息
+        doEdit(params) {
+            this.useApi.userEdit(parmas)((res) => {
+                if (res.code == 200) {
+                    this.$message.success(res.message);
+                    this.queryList();
+                }
+            });
+        },
+        //查询表单
         queryList() {
             let params = {
                 pageSize: this.pageInfo.pageSize,
@@ -77,10 +123,6 @@ export default {
                 this.pageInfo.total = res.total;
                 console.log("查询列表");
             });
-        },
-        handleStatusChange(row) {
-            row.roleStatus = !row.roleStatus;
-            this.doEdit(row);
         },
     },
     created() {

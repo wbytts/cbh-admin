@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-14 00:16:39
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-05 02:54:57
+ * @LastEditTime: 2022-08-06 18:58:08
  * good good study 📚, day day up ✔️.
  */
 import { doPost } from "@/utils/xhr-util";
@@ -20,5 +20,8 @@ export default {
   },
   queryList(params) {
     return service.get("/admin/user", { params });
-  }
+  },
+  userEdit(parmas) {
+    return service.put("/admin/user", parmas);
+  },
 };

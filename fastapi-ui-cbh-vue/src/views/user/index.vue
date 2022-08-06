@@ -5,24 +5,26 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-07 04:16:32
+ * @LastEditTime: 2022-08-07 05:37:53
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="container">
         <div class="form-container">
-            <el-form inline>
-                <el-form-item label="用户名">
+            <el-form :model="form" inline>
+                <el-form-item label="用户名" v-model="form.username">
                     <el-input size="mini"></el-input>
                 </el-form-item>
-                <el-form-item label="电话号码">
+                <el-form-item label="电话号码" v-model="form.user_phone">
                     <el-input size="mini"></el-input>
                 </el-form-item>
-                <el-form-item label="创建时间">
+                <el-form-item label="创建时间" v-model="form.create_time">
                     <el-date-picker size="mini"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="角色状态">
-                    <el-select size="mini"></el-select>
+                <el-form-item label="角色状态" v-model="form.create_time">
+                    <el-select v-model="value" placeholder="请选择" size="mini">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
                 </el-form-item>
                 <div class="buttons">
                     <el-button
@@ -87,24 +89,42 @@
 import CbhPagination from "@/components/CbhPagination/index.vue";
 import userApi from "@/api/user.js";
 import { pageInfo } from "@/utils/element-config";
+const initform = {
+    username: "",
+    user_phone: "",
+    user_email: "",
+    create_time: "",
+    user_status: "",
+};
+
 export default {
-    components: {CbhPagination},
+    components: { CbhPagination },
     data() {
         return {
+            form: { ...initform },
             userList: [],
             pageInfo: { ...pageInfo },
+            options: [
+                {
+                    value: "1",
+                    label: "有效",
+                },
+                {
+                    value: "2",
+                    label: "无效",
+                },
+            ],
+             value: "",
         };
     },
     methods: {
-        //查询功能
-        handleQuery() {},
         //更改状态
         handleStatusChange(row) {
             row.user_statue = !row.user_statue;
             this.doEdit(row);
         },
         //修改用户信息
-        doEdit(params) {
+        doEdit(parmas) {
             this.useApi.userEdit(parmas)((res) => {
                 if (res.code == 200) {
                     this.$message.success(res.message);

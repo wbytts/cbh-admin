@@ -3,10 +3,9 @@ import accessApi from "@/api/access.js";
 
 export default {
   async getRoleIds({ commit, dispatch }) {
-    let {
-      data: { role_ids: roleIds },
-    } = await userApi.getCurrentUser();
-    commit("setRoleIds", roleIds);
+    let { data } = await userApi.getCurrentUser();
+    commit("setUserInfo", data);
+    commit("setRoleIds", data.role_ids);
     dispatch("getAccess");
   },
   async getAccess({ commit, state }) {

@@ -7,7 +7,6 @@ from api.endpoints.test.test import test_oath2
 from api.endpoints.sys import user, role, access, menu
 from api.websocket import admin_chat
 from api.extends import sms, wechat
-import api.endpoints.money_record as money_record
 
 # API路由
 api_router = APIRouter(prefix="/api/v1")
@@ -26,5 +25,4 @@ api_router.include_router(wechat.router, prefix="/wechat", tags=["微信授权"]
 api_router.include_router(sms.router, prefix="/sms", tags=["短信接口"])
 
 """#################### 业务API ####################"""
-# money_record
-api_router.include_router(money_record.router, prefix="/money_record", tags=["money记录"])
+

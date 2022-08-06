@@ -1,11 +1,11 @@
 '''
 Description:
-FilePath: /fastapi/database/mysql.py
+FilePath: /front-end-demose:/my-projects/cbh-admin/fastapi/database/mysql.py
 ******************************
 Author: 陈炳翰
 Date: 2022-07-14 21:25:59
 LastEditors: BingYi
-LastEditTime: 2022-07-26 11:13:33
+LastEditTime: 2022-08-05 10:43:53
 good good study 📚, day day up ✔️.
 '''
 # -*- coding:utf-8 -*-
@@ -60,7 +60,6 @@ DB_ORM_CONFIG = {
         "base": {
             "models": [
                 "models.base", # 基础模型
-                "models.money_record", # 记账
             ],
             "default_connection": "base"
         },

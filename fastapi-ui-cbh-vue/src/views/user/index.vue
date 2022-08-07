@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-08 03:19:28
+ * @LastEditTime: 2022-08-08 03:28:51
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -167,7 +167,7 @@ export default {
         //配置角色权限
         roleDeploy(params) {
             userApi.deploy(params).then((res) => {
-                this.roleList = res.role;
+                this.roleList = res.roles;
             });
         },
     },

@@ -5,24 +5,24 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-07 05:37:53
+ * @LastEditTime: 2022-08-07 17:58:03
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="container">
         <div class="form-container">
             <el-form :model="form" inline>
-                <el-form-item label="用户名" v-model="form.username">
-                    <el-input size="mini"></el-input>
+                <el-form-item label="用户名">
+                    <el-input v-model="form.username" size="mini"></el-input>
                 </el-form-item>
-                <el-form-item label="电话号码" v-model="form.user_phone">
-                    <el-input size="mini"></el-input>
+                <el-form-item label="电话号码">
+                    <el-input v-model="form.user_phone" size="mini"></el-input>
                 </el-form-item>
-                <el-form-item label="创建时间" v-model="form.create_time">
-                    <el-date-picker size="mini"></el-date-picker>
+                <el-form-item label="创建时间">
+                    <el-date-picker v-model="form.create_time" size="mini"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="角色状态" v-model="form.create_time">
-                    <el-select v-model="value" placeholder="请选择" size="mini">
+                <el-form-item label="角色状态">
+                    <el-select v-model="form.user_status" placeholder="请选择" size="mini" @change="test">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                 </el-form-item>
@@ -88,8 +88,8 @@
 <script>
 import CbhPagination from "@/components/CbhPagination/index.vue";
 import userApi from "@/api/user.js";
-import { pageInfo } from "@/utils/element-config";
-const initform = {
+import { confirmConfig, pageInfo } from "@/utils/element-config";
+const initForm = {
     username: "",
     user_phone: "",
     user_email: "",
@@ -101,26 +101,40 @@ export default {
     components: { CbhPagination },
     data() {
         return {
-            form: { ...initform },
+            form: { ...initForm },
             userList: [],
             pageInfo: { ...pageInfo },
             options: [
                 {
                     value: "1",
-                    label: "有效",
+                    label: "生效",
                 },
                 {
-                    value: "2",
-                    label: "无效",
+                    value: "0",
+                    label: "禁用",
                 },
             ],
-             value: "",
+            value: "",
         };
     },
     methods: {
+        test() {
+            console.log("打印了", this.value);
+        },
+        //查询
+        handleQuery() {
+            this.queryList();
+            this.pageInfo.pageNum = 1;
+            console.log("查询");
+        },
+        //重置
+        handleReset() {
+            this.form = { ...initForm };
+            this.handleQuery();
+        },
         //更改状态
         handleStatusChange(row) {
-            row.user_statue = !row.user_statue;
+            row.user_status = !row.user_status;
             this.doEdit(row);
         },
         //修改用户信息
@@ -138,6 +152,18 @@ export default {
                 pageSize: this.pageInfo.pageSize,
                 pageNum: this.pageInfo.pageNum,
             };
+            if (this.form.username) {
+                params.username = this.form.username;
+            }
+            if (this.form.user_phone) {
+                params.user_phone = this.form.user_phone;
+            }
+            if (this.form.create_time) {
+                params.create_time = this.form.create_time;
+            }
+            if (this.form.user_status) {
+                params.user_status = this.form.user_status;
+            }
             userApi.queryList(params).then((res) => {
                 this.userList = res.data;
                 this.pageInfo.total = res.total;

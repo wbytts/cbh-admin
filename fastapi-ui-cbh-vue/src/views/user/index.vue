@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-07 17:58:03
+ * @LastEditTime: 2022-08-08 03:19:28
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -22,7 +22,7 @@
                     <el-date-picker v-model="form.create_time" size="mini"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="角色状态">
-                    <el-select v-model="form.user_status" placeholder="请选择" size="mini" @change="test">
+                    <el-select v-model="form.user_status" placeholder="请选择" size="mini">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                 </el-form-item>
@@ -44,13 +44,16 @@
             <div class="table-container-head">
                 <div>用户管理</div>
                 <div>
-                    <el-button style="background-color:rgb(187, 47, 171);color:white;width:150px">用户创建</el-button>
+                    <el-button
+                        @click="$refs.userAddDialog.show('用户新增')"
+                        style="background-color:rgb(187, 47, 171);color:white;width:150px"
+                    >用户创建</el-button>
                 </div>
             </div>
             <div>
                 <el-table :data="userList" border>
                     <el-table-column prop="username" label="用户名" width="80"></el-table-column>
-                    <el-table-column prop="user_phone" label="手机号" width="80"></el-table-column>
+                    <el-table-column prop="user_phone" label="手机号" width="150"></el-table-column>
                     <el-table-column prop="user_email" label="邮箱" width="80"></el-table-column>
                     <el-table-column prop="create_time" label="创建日期" width="250"></el-table-column>
                     <el-table-column label="状态" width="80">
@@ -82,6 +85,7 @@
                 />
             </div>
         </div>
+        <UserAddDialog ref="userAddDialog" />
     </div>
 </template>
 
@@ -89,6 +93,7 @@
 import CbhPagination from "@/components/CbhPagination/index.vue";
 import userApi from "@/api/user.js";
 import { confirmConfig, pageInfo } from "@/utils/element-config";
+import UserAddDialog from "@/views/user/add.vue";
 const initForm = {
     username: "",
     user_phone: "",
@@ -98,7 +103,7 @@ const initForm = {
 };
 
 export default {
-    components: { CbhPagination },
+    components: { CbhPagination, UserAddDialog },
     data() {
         return {
             form: { ...initForm },
@@ -114,13 +119,11 @@ export default {
                     label: "禁用",
                 },
             ],
+            roleList: [],
             value: "",
         };
     },
     methods: {
-        test() {
-            console.log("打印了", this.value);
-        },
         //查询
         handleQuery() {
             this.queryList();
@@ -136,15 +139,6 @@ export default {
         handleStatusChange(row) {
             row.user_status = !row.user_status;
             this.doEdit(row);
-        },
-        //修改用户信息
-        doEdit(parmas) {
-            this.useApi.userEdit(parmas)((res) => {
-                if (res.code == 200) {
-                    this.$message.success(res.message);
-                    this.queryList();
-                }
-            });
         },
         //查询表单
         queryList() {
@@ -170,9 +164,17 @@ export default {
                 console.log("查询列表");
             });
         },
+        //配置角色权限
+        roleDeploy(params) {
+            userApi.deploy(params).then((res) => {
+                this.roleList = res.role;
+            });
+        },
     },
     created() {
+        this.roleDeploy();
         this.queryList();
+        console.log(this.roleList);
     },
 };
 </script>

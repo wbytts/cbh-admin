@@ -1,11 +1,11 @@
 <!--
  * @Description: 
- * @FilePath: \fastapi-ui-cbh-vue\src\pages\adminLayout\sidebar.vue
+ * @FilePath: \frontend-codesd:\projects\xxxxxxxx\github\wbytts\cbh-admin\fastapi-ui-cbh-vue\src\pages\adminLayout\sidebar.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-15 22:40:13
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-07-28 01:27:00
+ * @LastEditTime: 2022-08-10 01:13:18
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -13,7 +13,7 @@
     <el-menu
       :default-active="$store.state.currentMenuKey"
       class="el-menu-vertical-demo"
-      background-color="#671a58"
+      background-color="rgb(3, 35, 86)"
       text-color="#fff"
       active-text-color="#ffd04b"
     >
@@ -38,6 +38,6 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .el-menu-item.is-active {
     color: rgb(254, 254, 254) !important;
-    background-color: rgb(180, 132, 174) !important
+    background-color: rgb(4, 45, 111) !important
 }
 </style>

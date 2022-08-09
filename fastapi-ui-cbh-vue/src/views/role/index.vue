@@ -5,40 +5,41 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-03 23:52:33
+ * @LastEditTime: 2022-08-10 01:36:15
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="container cbh-scroll">
         <div class="form-container">
-            <el-form class="form" :model="form" inline>
-                <el-form-item label="角色名称:">
+            <el-form class="form" :model="form" inline style="color:white">
+                <el-form-item>
+                    <span slot="label">
+                        <span style="color:white">角色名称:</span>
+                    </span>
                     <el-input v-model="form.roleName" size="mini" placeholder="请输入角色名"></el-input>
                 </el-form-item>
-                <el-form-item label="创建时间:">
-                    <el-date-picker
-                        v-model="form.createTime"
-                        type="datetime"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        placeholder="请选择时间"
-                        size="mini"
-                    ></el-date-picker>
+                <el-form-item>
+                    <span slot="label">
+                        <span style="color:white">创建时间:</span>
+                    </span>
+                    <el-date-picker v-model="form.createTime" type="datetime" value-format="yyyy-MM-dd HH:mm:ss"
+                        placeholder="请选择时间" size="mini"></el-date-picker>
                 </el-form-item>
                 <div class="buttons">
                     <!-- style="" -->
-                    <el-button @click="handleQuery" style="background-color:rgb(187, 47, 171);color:white" >查询</el-button>
-                    <el-button @click="handleReset" style="background-color:rgb(187, 47, 171);color:white" >重置</el-button>
+                    <el-button @click="handleQuery" style="background-color:rgb(2, 24, 58);color:white">查询
+                    </el-button>
+                    <el-button @click="handleReset" style="background-color:rgb(2, 24, 58);color:white">重置
+                    </el-button>
                 </div>
             </el-form>
         </div>
         <div class="table-container">
             <div class="table-container-head">
-                <div>所有角色</div>
+                <div style="color:white">所有角色</div>
                 <div>
-                    <el-button
-                        style="background-color:rgb(187, 47, 171);color:white;width:150px"
-                        @click="$refs.roleAddDialog.show('角色新增')"
-                    >创建角色</el-button>
+                    <el-button style="background-color:rgb(2, 24, 58);color:white;width:150px"
+                        @click="$refs.roleAddDialog.show('角色新增')">创建角色</el-button>
                 </div>
             </div>
             <el-table :data="roleList" border :header-cell-style="headClass">
@@ -46,19 +47,15 @@
                 <el-table-column prop="role_name" label="角色名称" min-width="200"></el-table-column>
                 <el-table-column prop="role_desc" label="备注" min-width="200"></el-table-column>
                 <el-table-column prop="create_time" label="创建日期" width="250">
-                    <template slot-scope="{row}">{{row.create_time | dateFormat}}</template>
+                    <template slot-scope="{row}">{{ row.create_time | dateFormat }}</template>
                 </el-table-column>
                 <el-table-column prop="role_status" label="状态" min-width="150" align="center">
                     <template slot-scope="{ row }">
-                        <el-switch
-                            v-model="row.role_status"
-                            active-color="rgb(187, 47, 171)"
-                            inactive-color="rgb(255, 189, 247)"
-                            @change="handleStatusChange(row)"
-                        ></el-switch>
+                        <el-switch v-model="row.role_status" active-color="rgb(4, 77, 186)"
+                            inactive-color="rgb(159, 189, 235)" @change="handleStatusChange(row)"></el-switch>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作"  min-width="220" align="center" fixed="right">
+                <el-table-column label="操作" min-width="220" align="center" fixed="right">
                     <template slot-scope="{ row }">
                         <div>
                             <el-button size="mini" @click="handleEdit(row)" class="form-boder">编辑</el-button>
@@ -70,12 +67,8 @@
             </el-table>
             <!-- 分页组件 -->
             <div class="pagination">
-                <cbh-pagination
-                    :pageInfo.sync="pageInfo"
-                    align="center"
-                    :updateFunc="queryList"
-                    background="rgb(187, 47, 171)"
-                />
+                <cbh-pagination :pageInfo.sync="pageInfo" align="center" :updateFunc="queryList"
+                    background="rgb(187, 47, 171)" />
             </div>
         </div>
 
@@ -191,7 +184,7 @@ export default {
         },
         // 表头样式修改
         headClass() {
-            return "text-align:center ;background-color:rgb(187, 47, 171);color:white";
+            return "text-align:center ;background-color:rgb(2, 24, 58);color:white";
         },
     },
     created() {
@@ -202,11 +195,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "./style.scss";
+
 .buttons {
     position: absolute;
     right: 0;
     margin-right: 20px;
 }
+
 .el-form.form.el-form--inline,
 .el-form-item {
     display: flex;
@@ -220,17 +215,18 @@ export default {
 }
 
 ::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
-    background-color: rgb(187, 47, 171) !important;
+    background-color: rgb(4, 77, 186) !important;
 }
 
 .form-boder:hover {
-    background-color: rgb(187, 47, 171);
+    background-color: rgb(4, 77, 186);
     color: white;
-    border: rgb(187, 47, 171) solid 1px;
+    border: rgb(4, 77, 186) solid 1px;
 }
-.form-boder:focus{
-    background-color: rgb(187, 47, 171);
+
+.form-boder:focus {
+    background-color: rgb(4, 77, 186);
     color: white;
-    border: rgb(187, 47, 171) solid 1px;
+    border: rgb(4, 77, 186) solid 1px;
 }
 </style>

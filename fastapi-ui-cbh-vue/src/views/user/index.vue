@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-10 01:50:55
+ * @LastEditTime: 2022-08-10 02:02:44
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -165,8 +165,13 @@ export default {
                 console.log("查询列表");
             });
         },
-        //角色创建确认
-        
+        //角色新增
+        docreate(params){
+            userApi.create(params).then((res)=>{
+                
+            })
+        },
+
         //获取所有角色信息
         allRoles() {
             roleApi.all({}).then((res) => {

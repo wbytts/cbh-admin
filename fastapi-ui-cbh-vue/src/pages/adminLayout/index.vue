@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-10 01:29:10
+ * @LastEditTime: 2022-08-11 02:33:42
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/plugins/cbh-element-diy/scss/var.scss';
+@import '@/style/mixin.scss';
+
 .header {
     /* width: 100vw; */
     position: fixed;
@@ -89,28 +92,25 @@ export default {
     /* bottom: 0; */
     left: 0;
     right: 0;
-    background-color: rgb(2, 24, 58);
+    background-color: rgb(242, 209, 19);
     height: 45px;
     .title {
         display: inline-block;
         text-align: center;
         line-height: 45px;
-        background: rgb(2, 24, 58);
+        background:rgb(242, 209, 19);
         width: 200px;
         height: 45px;
-        color: rgb(255, 255, 255);
+        color:black;
+        font-weight: bolder;
     }
     .user {
-        display: flex;
-        position: absolute;
-        right: 0;
+        @include abs-pos('', 0, '', '');
         margin-right: 25px;
-        top: 50%;
-        transform: translateY(-50%);
+        @include abs-center-y;
         .user-profile {
             text-align: center;
-            line-height: 35px;
-            height: 35px;
+            @include line-height-center(35px);
             width: 35px;
             border-radius: 50%;
             background: rgb(255, 255, 255);
@@ -125,7 +125,7 @@ export default {
     bottom: 0;
     .el-container {
         display: inline-block;
-        background-color: rgb(3, 35, 86);
+        background-color: $cbh-bg-color-grey;
         width: 200px;
         height: calc(100vh - 45px);
         .el-aside {

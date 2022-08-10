@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-10 01:36:15
+ * @LastEditTime: 2022-08-11 02:46:57
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -27,10 +27,8 @@
                 </el-form-item>
                 <div class="buttons">
                     <!-- style="" -->
-                    <el-button @click="handleQuery" style="background-color:rgb(2, 24, 58);color:white">查询
-                    </el-button>
-                    <el-button @click="handleReset" style="background-color:rgb(2, 24, 58);color:white">重置
-                    </el-button>
+                    <cbh-button @click="handleQuery">查询</cbh-button>
+                    <cbh-button @click="handleReset">重置</cbh-button>
                 </div>
             </el-form>
         </div>
@@ -38,11 +36,10 @@
             <div class="table-container-head">
                 <div style="color:white">所有角色</div>
                 <div>
-                    <el-button style="background-color:rgb(2, 24, 58);color:white;width:150px"
-                        @click="$refs.roleAddDialog.show('角色新增')">创建角色</el-button>
+                    <cbh-button @click="$refs.roleAddDialog.show('角色新增')">创建角色</cbh-button>
                 </div>
             </div>
-            <el-table :data="roleList" border :header-cell-style="headClass">
+            <cbh-table :data="roleList" border>
                 <el-table-column type="index" label="序号" width="80"></el-table-column>
                 <el-table-column prop="role_name" label="角色名称" min-width="200"></el-table-column>
                 <el-table-column prop="role_desc" label="备注" min-width="200"></el-table-column>
@@ -51,20 +48,19 @@
                 </el-table-column>
                 <el-table-column prop="role_status" label="状态" min-width="150" align="center">
                     <template slot-scope="{ row }">
-                        <el-switch v-model="row.role_status" active-color="rgb(4, 77, 186)"
-                            inactive-color="rgb(159, 189, 235)" @change="handleStatusChange(row)"></el-switch>
+                        <el-switch v-model="row.role_status" @change="handleStatusChange(row)"></el-switch>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" min-width="220" align="center" fixed="right">
                     <template slot-scope="{ row }">
                         <div>
-                            <el-button size="mini" @click="handleEdit(row)" class="form-boder">编辑</el-button>
-                            <el-button size="mini" @click="handleAccess(row)" class="form-boder">权限</el-button>
-                            <el-button size="mini" @click="handleDelete(row)" class="form-boder">删除</el-button>
+                            <cbh-button size="mini" @click="handleEdit(row)" class="form-boder">编辑</cbh-button>
+                            <cbh-button size="mini" @click="handleAccess(row)" class="form-boder">权限</cbh-button>
+                            <cbh-button size="mini" @click="handleDelete(row)" class="form-boder">删除</cbh-button>
                         </div>
                     </template>
                 </el-table-column>
-            </el-table>
+            </cbh-table>
             <!-- 分页组件 -->
             <div class="pagination">
                 <cbh-pagination :pageInfo.sync="pageInfo" align="center" :updateFunc="queryList"
@@ -84,6 +80,7 @@ import CbhPagination from "@/components/CbhPagination/index.vue";
 import { confirmConfig, pageInfo } from "@/utils/element-config";
 import RoleAddDialog from "./add.vue";
 import RoleAccess from "./access.vue";
+
 
 const initForm = {
     roleName: "",
@@ -183,9 +180,9 @@ export default {
             });
         },
         // 表头样式修改
-        headClass() {
-            return "text-align:center ;background-color:rgb(2, 24, 58);color:white";
-        },
+        // headClass() {
+        //     return "text-align:center ;background-color: rgb(246, 216, 22);color:white";
+        // },
     },
     created() {
         this.queryList();
@@ -195,10 +192,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "./style.scss";
+@import '@/style/mixin.scss';
+@import '@/plugins/cbh-element-diy/scss/var.scss';
 
 .buttons {
-    position: absolute;
-    right: 0;
+    @include abs-pos('', 0, '', '');
     margin-right: 20px;
 }
 
@@ -214,7 +212,7 @@ export default {
     margin-bottom: 20px;
 }
 
-::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
+/* ::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
     background-color: rgb(4, 77, 186) !important;
 }
 
@@ -228,5 +226,5 @@ export default {
     background-color: rgb(4, 77, 186);
     color: white;
     border: rgb(4, 77, 186) solid 1px;
-}
+} */
 </style>

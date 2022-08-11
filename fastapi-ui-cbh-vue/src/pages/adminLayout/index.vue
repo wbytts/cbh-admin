@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-11 02:33:42
+ * @LastEditTime: 2022-08-12 01:47:57
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -92,16 +92,16 @@ export default {
     /* bottom: 0; */
     left: 0;
     right: 0;
-    background-color: rgb(242, 209, 19);
+    background-color: rgb(51, 53, 78);
     height: 45px;
     .title {
         display: inline-block;
         text-align: center;
         line-height: 45px;
-        background:rgb(242, 209, 19);
+        background:rgb(51, 53, 78);
         width: 200px;
         height: 45px;
-        color:black;
+        color:white;
         font-weight: bolder;
     }
     .user {
@@ -123,6 +123,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: $cbh-bg-color-black;
     .el-container {
         display: inline-block;
         background-color: $cbh-bg-color-grey;

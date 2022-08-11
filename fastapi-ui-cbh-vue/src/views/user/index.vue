@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-12 01:29:27
+ * @LastEditTime: 2022-08-12 02:53:48
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -71,9 +71,13 @@
                         </template>
                     </el-table-column>
                     <el-table-column type="index" label="操作" width="250">
-                        <el-button size="mini">角色配置</el-button>
-                        <el-button size="mini">编辑</el-button>
-                        <el-button size="mini">删除</el-button>
+                        <template slot-scope="{ row }">
+                            <div>
+                                <el-button size="mini">角色配置</el-button>
+                                <el-button size="mini">编辑</el-button>
+                                <el-button size="mini" @click="handleDelete(row)">删除</el-button>
+                            </div>
+                        </template>
                     </el-table-column>
                 </el-table>
             </div>
@@ -83,6 +87,7 @@
             </div>
         </div>
         <UserAddDialog ref="userAddDialog" :allRoles="roleList" @confirm="handleConfirm" />
+        <RoleDeploy ref="roleDeploy" />
     </div>
 </template>
 
@@ -92,6 +97,8 @@ import roleApi from "@/api/role.js";
 import CbhPagination from "@/components/CbhPagination/index.vue";
 import { confirmConfig, pageInfo } from "@/utils/element-config";
 import UserAddDialog from "@/views/user/add.vue";
+import RoleDeploy from "@/views/user/roledeploy.vue";
+
 const initForm = {
     username: "",
     user_phone: "",
@@ -104,7 +111,7 @@ export default {
     // setup() {
     //     console.log('setup......')
     // },
-    components: { CbhPagination, UserAddDialog },
+    components: { CbhPagination, UserAddDialog, RoleDeploy },
     data() {
         return {
             form: { ...initForm },
@@ -146,6 +153,31 @@ export default {
             //逻辑短路写法,如果有id
             params.id || this.doCreate(params)
         },
+        // 点击删除操作
+        // @让用户确认一下("是否确认要删除")
+        handleDelete(row) {
+            // this.doDelete(row)
+            this.$confirm("是否确认删除此角色", "提示", confirmConfig)
+                .then(() => this.doDelete(row))
+                .catch(() => this.$message.info("删除已取消"));
+        },
+        //用户新增
+        doCreate(params) {
+            userApi.create(params).then((res) => {
+                this.$refs.userAddDialog.closeAndClear();
+                if (res.code == 200) {
+                    this.$message(res.message);
+                    this.handleQuery();
+                }
+            })
+        },
+        //用户删除
+        doDelete(row) {
+            userApi.delete({ user_id: row.id }).then((res) => {
+                this.queryList();
+                this.$message.success("删除成功");
+            });
+        },
         //查询表单
         queryList() {
             let params = {
@@ -170,17 +202,6 @@ export default {
                 console.log("查询列表");
             });
         },
-        //角色新增
-        doCreate(params) {
-            userApi.create(params).then((res) => {
-                this.$refs.userAddDialog.closeAndClear();
-                if (res.code == 200) {
-                    this.$message(res.message);
-                    this.handleQuery();
-                }
-            })
-        },
-
         //获取所有角色信息
         allRoles() {
             roleApi.all({}).then((res) => {

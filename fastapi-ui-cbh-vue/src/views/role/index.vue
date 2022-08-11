@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-20 21:35:32
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-11 02:46:57
+ * @LastEditTime: 2022-08-12 01:13:05
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -149,7 +149,7 @@ export default {
         // 角色新增
         doCreate(params) {
             roleApi.create(params).then((res) => {
-                this.$refs.roleAddDialog.close();
+                this.$refs.roleAddDialog.closeAndClear();
                 if (res.code == 200) {
                     this.$message.success(res.message);
                     this.handleQuery();

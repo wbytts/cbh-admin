@@ -1,22 +1,12 @@
 <template>
     <!-- 角色创建对话框 -->
-    <el-dialog
-        :title="title"
-        :visible.sync="visible"
-        :modal-append-to-body="false"
-        width="500px"
-        class="role-add-dialog"
-        :close-on-click-modal="false"
-    >
+    <el-dialog :title="title" :visible.sync="visible" :modal-append-to-body="false" width="500px"
+        class="role-add-dialog" :close-on-click-modal="false" :before-close="closeAndClear">
         <el-form ref="form" :model="form" :rules="rules" inline>
             <el-row>
                 <el-form-item prop="roleName" label="角色名称">
-                    <el-input
-                        v-model="form.roleName"
-                        @keydown.native="keyEvent = $event"
-                        @input="handleRoleNameInput"
-                        @paste.native="handleRoleNamePaste"
-                    ></el-input>
+                    <el-input v-model="form.roleName" @keydown.native="keyEvent = $event" @input="handleRoleNameInput"
+                        @paste.native="handleRoleNamePaste"></el-input>
                 </el-form-item>
             </el-row>
             <el-row>
@@ -29,23 +19,15 @@
             </el-row>
             <el-row>
                 <el-form-item prop="roleDesc" label="角色描述">
-                    <el-input
-                        type="textarea"
-                        v-model="form.roleDesc"
-                        maxlength="60"
-                        show-word-limit
-                        :autosize="{ minRows: 5, maxRows: 16 }"
-                    ></el-input>
+                    <el-input type="textarea" v-model="form.roleDesc" maxlength="60" show-word-limit
+                        :autosize="{ minRows: 5, maxRows: 16 }"></el-input>
                 </el-form-item>
             </el-row>
         </el-form>
         <span slot="footer" class="dialog-footer">
-            <el-button @click="close">取 消</el-button>
-            <el-button
-                type="primary"
-                @click="handleConfirm"
-                style="background-color:rgb(4, 77, 186);color:white;border:rgb(4, 77, 186) solid 1px"
-            >确 定</el-button>
+            <el-button @click="closeAndClear">取 消</el-button>
+            <el-button type="primary" @click="handleConfirm"
+                style="background-color:rgb(4, 77, 186);color:white;border:rgb(4, 77, 186) solid 1px">确 定</el-button>
         </span>
     </el-dialog>
 </template>
@@ -79,17 +61,9 @@ export default {
             this.title = title;
             this.visible = true;
         },
-        close() {
+        closeAndClear() {
+            this.$refs.form.resetFields();
             this.visible = false;
-            this.clear();
-        },
-        clear() {
-            this.form = {
-                id: null,
-                roleName: "",
-                roleStatus: true,
-                roleDesc: "",
-            };
         },
         setParams(row) {
             this.form = {
@@ -141,6 +115,7 @@ export default {
 
 <style lang="scss" scoped>
 .role-add-dialog {
+
     /* width: 500px; */
     .el-input,
     .el-textarea {

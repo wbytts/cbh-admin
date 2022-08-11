@@ -5,7 +5,7 @@
  * @Author: 陈炳翰
  * @Date: 2022-07-16 00:10:53
  * @LastEditors: 陈炳翰
- * @LastEditTime: 2022-08-10 02:02:44
+ * @LastEditTime: 2022-08-12 01:29:27
  * good good study 📚, day day up ✔️.
 -->
 <template>
@@ -71,7 +71,7 @@
                         </template>
                     </el-table-column>
                     <el-table-column type="index" label="操作" width="250">
-                        <el-button size="mini">角色</el-button>
+                        <el-button size="mini">角色配置</el-button>
                         <el-button size="mini">编辑</el-button>
                         <el-button size="mini">删除</el-button>
                     </el-table-column>
@@ -82,7 +82,7 @@
                     background="rgb(187, 47, 171)" />
             </div>
         </div>
-        <UserAddDialog ref="userAddDialog" :allRoles="roleList" />
+        <UserAddDialog ref="userAddDialog" :allRoles="roleList" @confirm="handleConfirm" />
     </div>
 </template>
 
@@ -141,6 +141,11 @@ export default {
             row.user_status = !row.user_status;
             this.doEdit(row);
         },
+        //新增角色确认
+        handleConfirm(params) {
+            //逻辑短路写法,如果有id
+            params.id || this.doCreate(params)
+        },
         //查询表单
         queryList() {
             let params = {
@@ -166,9 +171,13 @@ export default {
             });
         },
         //角色新增
-        docreate(params){
-            userApi.create(params).then((res)=>{
-                
+        doCreate(params) {
+            userApi.create(params).then((res) => {
+                this.$refs.userAddDialog.closeAndClear();
+                if (res.code == 200) {
+                    this.$message(res.message);
+                    this.handleQuery();
+                }
             })
         },
 

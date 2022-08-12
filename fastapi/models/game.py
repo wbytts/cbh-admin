@@ -4,6 +4,8 @@ from .base import TimestampMixin
 
 class GameUser(TimestampMixin):
 
+    ganme_name = fields.CharField(null=True, description="游戏名呀", max_length=255)
+
     class Meta:
         table_description = "游戏用户表"
         table = "game_user"

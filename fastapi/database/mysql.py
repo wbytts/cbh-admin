@@ -5,7 +5,7 @@ FilePath: /fastapi/database/mysql.py
 Author: 陈炳翰
 Date: 2022-07-14 21:25:59
 LastEditors: BingYi
-LastEditTime: 2022-08-12 10:29:30
+LastEditTime: 2022-08-12 12:01:09
 good good study 📚, day day up ✔️.
 '''
 # -*- coding:utf-8 -*-
@@ -78,6 +78,6 @@ async def register_mysql(app: FastAPI):
     register_tortoise(
         app,
         config=DB_ORM_CONFIG,
-        generate_schemas=True,  # 是否生成表结构
+        generate_schemas=False,  # 是否生成表结构
         add_exception_handlers=False,  # 是否开启异常信息处理
     )

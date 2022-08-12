@@ -18,6 +18,8 @@ from core import Events, Exceptions, Router, Middleware
 from tortoise.exceptions import OperationalError, DoesNotExist, IntegrityError, ValidationError
 import uvicorn
 
+
+
 """
 FastAPI构建在两个主要的python库上：
     starlette 一个低级asgiweb框架 （https://www.starlette.io）
@@ -137,12 +139,7 @@ application.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)
 
 app = application
 
-
-
-# os.system("chcp & cls")
-
-
+os.system("chcp & cls")
 # uvicorn app:app --reload --port 8888 --host 0.0.0.0
-
 if __name__ == '__main__':
-    uvicorn.run('app:app', reload=True)
+    uvicorn.run('app:app', reload=True, port=8888)

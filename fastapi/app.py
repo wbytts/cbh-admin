@@ -16,6 +16,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from config import settings
 from core import Events, Exceptions, Router, Middleware
 from tortoise.exceptions import OperationalError, DoesNotExist, IntegrityError, ValidationError
+import uvicorn
 
 """
 FastAPI构建在两个主要的python库上：
@@ -142,3 +143,6 @@ app = application
 
 
 # uvicorn app:app --reload --port 8888 --host 0.0.0.0
+
+if __name__ == '__main__':
+    uvicorn.run('app:app', reload=True)

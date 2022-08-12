@@ -1,0 +1,1 @@
+aerich migrate && aerich upgrade

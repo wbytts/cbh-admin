@@ -114,6 +114,10 @@ class SystemParams(TimestampMixin):
         table = "system_params"
 
 
-class File(TimestampMixin):
+class ServerFile(TimestampMixin):
     """文件"""
     pass
+
+    class Meta:
+        table_description = '本地存储的文件'
+        table = 'server_file'

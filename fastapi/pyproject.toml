@@ -1,4 +1,4 @@
 [tool.aerich]
-tortoise_orm = "mysql_config.DB_ORM_CONFIG"
+tortoise_orm = "database.mysql_prod.DB_ORM_CONFIG"
 location = "./migrations"
 src_folder = "./."

@@ -1,1 +1,1 @@
-call .\venv\Scripts\python.exe && uvicorn app:app --reload --port 8888
+uvicorn app:app --reload --port 8888

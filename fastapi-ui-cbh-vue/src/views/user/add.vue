@@ -54,7 +54,7 @@ export default {
             form: {
                 username: "",
                 password: "",
-                user_phone: "",
+                user_phone: null,
                 user_status: "",
                 remarks: "",
                 roles: [],

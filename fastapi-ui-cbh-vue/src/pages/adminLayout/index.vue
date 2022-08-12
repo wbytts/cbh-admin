@@ -1,25 +1,32 @@
 <!--
  * @Description:
- * @FilePath: /front-end-demose:/my-projects/cbh-admin/fastapi-ui-cbh-vue/src/pages/adminLayout/index.vue
+ * @FilePath: \frontend-codesd:\projects\xxxxxxxx\github\wbytts\cbh-admin\fastapi-ui-cbh-vue\src\pages\adminLayout\index.vue
  * ******************************
  * @Author: 陈炳翰
  * @Date: 2022-07-14 21:34:53
- * @LastEditors: BingYi
- * @LastEditTime: 2022-08-04 14:11:08
+ * @LastEditors: 陈炳翰
+ * @LastEditTime: 2022-08-12 01:47:57
  * good good study 📚, day day up ✔️.
 -->
 <template>
     <div class="admin-page">
         <div class="header">
             <div class="title">CBH管理系统</div>
-            <el-dropdown class="el-dropdown-user" @command="userControl">
-                <div class="user-profile"></div>
-                <el-dropdown-menu slot="dropdown">
-                    <!-- <el-dropdown-item cmmand="1">1234</el-dropdown-item>
-                    <el-dropdown-item divided command="2">退出登录</el-dropdown-item> -->
-                    <el-dropdown-item v-for="item in commands" :key="item.id" :divided="item.divided">{{item.name}}</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <div class="user">
+                <el-dropdown @command="userControl">
+                    <div class="user-profile">头像</div>
+                    <el-dropdown-menu slot="dropdown">
+                        <!-- <el-dropdown-item cmmand="1">1234</el-dropdown-item>
+                        <el-dropdown-item divided command="2">退出登录</el-dropdown-item>-->
+                        <el-dropdown-item
+                            v-for="item in commands"
+                            :command="item.id"
+                            :key="item.id"
+                            :divided="item.divided"
+                        >{{item.name}}</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
         </div>
         <div class="body">
             <div class="el-container">
@@ -50,24 +57,22 @@ export default {
     data() {
         return {
             commands: [
-                { id: 1, name: '1234', func: 'handle1234' },
-                { id: 2, name: '退出登录', func: 'handleLogout', divided: true }
-            ]
+                { id: 1, name: "1234", func: "handle1234" },
+                { id: 2, name: "退出登录", func: "handleLogout", divided: true },
+            ],
         };
     },
     methods: {
-        handle1234() {
-
-        },
+        handle1234() {},
         handleLogout() {
             localStorage.removeItem("token");
             this.$message("已退出");
             this.$router.push("/login");
         },
         userControl(command) {
-            const funcName = this.commands.filter(item => item.id === command)[0].func;
+            const funcName = this.commands.filter((item) => item.id === command)[0].func;
             this[funcName]();
-        }
+        },
     },
     //生命周必须是一个函数
     beforeCreate() {
@@ -77,6 +82,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/plugins/cbh-element-diy/scss/var.scss';
+@import '@/style/mixin.scss';
+
 .header {
     /* width: 100vw; */
     position: fixed;
@@ -84,28 +92,28 @@ export default {
     /* bottom: 0; */
     left: 0;
     right: 0;
-    background-color: rgb(194, 41, 176);
+    background-color: rgb(51, 53, 78);
     height: 45px;
     .title {
         display: inline-block;
         text-align: center;
         line-height: 45px;
-        background: rgb(194, 41, 176);
+        background:rgb(51, 53, 78);
         width: 200px;
         height: 45px;
-        color: rgb(251, 250, 250);
+        color:white;
+        font-weight: bolder;
     }
-    .el-dropdown-user {
-        position: absolute;
-        right: 0;
+    .user {
+        @include abs-pos('', 0, '', '');
         margin-right: 25px;
-        line-height: 45px;
-        height: 45px;
+        @include abs-center-y;
         .user-profile {
-            height: 35px;
+            text-align: center;
+            @include line-height-center(35px);
             width: 35px;
             border-radius: 50%;
-            background: white;
+            background: rgb(255, 255, 255);
             border: 1px solid white;
         }
     }
@@ -115,9 +123,10 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: $cbh-bg-color-black;
     .el-container {
         display: inline-block;
-        background-color: #671a58;
+        background-color: $cbh-bg-color-grey;
         width: 200px;
         height: calc(100vh - 45px);
         .el-aside {

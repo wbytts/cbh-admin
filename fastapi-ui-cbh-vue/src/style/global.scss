@@ -1,8 +1,6 @@
-
-
 .container {
   padding: 18px;
-  background-color: #efefef;
+  background-color: rgb(34, 36, 57);
   overflow: auto;
   height: 100%;
 }
@@ -10,15 +8,15 @@
 .form-container {
   min-width: 1000px;
   padding: 10px;
-  background-color: #fff;
+  background-color: rgb(51, 53, 78);
   position: relative;
 }
 
 .table-container {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #fff;
+  background-color: rgb(51, 53, 78);
 }
 
 .cbh-scroll {

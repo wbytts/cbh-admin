@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from '@/views/home/index.js'
 
 // 解决，连续跳转到相同的路由，报错的问题
 const originalPush = VueRouter.prototype.push;
@@ -25,7 +24,7 @@ const routes = [
     children: [
       {
         path: "home",
-        component: Home,
+        component: () => import("@/views/home/index.vue"),
       },
       {
         path: "user",

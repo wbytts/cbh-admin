@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            class Node {
+                constructor(data, next) {
+                    this.data = data;
+                    this.next = next;
+                }
+            }
+            class List {
+                constructor() {
+                    this.head = null;
+                    this.len = 0;
+                }
+                // 尾插
+                push(data) {
+                    const node = new Node(data, null);
+                    let p = this.head;
+                    if (!p) {
+                        this.head = node;
+                    } else {
+                        while (p && p.next) p = p.next;
+                        p.next = node;
+                    }
+                    this.len++;
+                }
+                insertHead(data) {
+                    const node = new Node(data, null);
+                    node.next = this.head
+                    this.head = node;
+                    this.len++;
+                }
+                insert(index, data) {
+                    let p = this.head;
+                    let i = 0;
+                    if(index == -1) {
+                        const node = new Node(data, null);
+                        node.next = this.head;
+                        this.head = node;
+                        this.len++;
+                        return;
+                    } else if(index<-1 || index>=this.len) {
+                        throw new Error("范围错误")
+                    }
+                    while(i < index && p) {
+                        p = p.next;
+                        i++;
+                    }
+                    if(!p) {
+                        return;
+                    }
+                    const node = new Node(data, null);
+                    node.next = p.next;
+                    p.next = node;
+                    this.len++;
+                }
+                remove(index) {
+                    if(index < 0 || index >= this.len) {
+                        throw new Error("范围错误")
+                    }
+                    let i = 0;
+                    let p = this.head;
+                    if(index == 0) {
+                        this.head = this.head.next;
+                        return;
+                    }
+                    while(i < index-1 && p) {
+                        i++;
+                        p = p.next;
+                    }
+                    p.next = p.next.next;
+                }
+                get(index) {
+                    if(index < 0 || index >= this.len) {
+                        throw new Error("范围错误")
+                    }
+                    let i = 0;
+                    let p = this.head;
+                    while(i < index && p) {
+                        i++;
+                        p = p.next;
+                    }
+                    return p.data;
+                }
+                show() {
+                    let p = this.head;
+                    let str = "";
+                    while (p) {
+                        str += `${p.data}`;
+                        if(p.next) {
+                            str += ' -> '
+                        }
+                        p = p.next;
+                    }
+                    console.log(str);
+                }
+                getReverseList() {
+                    let newList = null;
+                    
+                }
+            }
+
+            let list = new List();
+            list.push(3);
+            list.show();
+
+            list.push(4);
+            list.show();
+
+            list.push(5);
+            list.show();
+
+            list.push(6);
+            list.show();
+
+            list.insertHead(999)
+            list.show();
+
+            list.push(3);
+            list.show();
+
+            list.insertHead(666);
+            list.show();
+
+            list.insert(4, 333)
+            list.show();
+            
+            list.remove(0)
+            list.show();
+
+            console.log('list[4]=', list.get(4))
+        </script>
+    </body>
+</html>

@@ -141,5 +141,5 @@ app = application
 
 os.system("chcp & cls")
 # uvicorn app:app --reload --port 8888 --host 0.0.0.0
-if __name__ == '__main__':
-    uvicorn.run('app:app', reload=True, port=8888)
+# if __name__ == '__main__':
+#     uvicorn.run('app:app', reload=True, port=8888)

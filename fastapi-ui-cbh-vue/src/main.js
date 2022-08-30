@@ -5,11 +5,9 @@ import store from "./store";
 import "./style/common.scss";
 import "./style/global.scss";
 import "font-awesome/css/font-awesome.min.css";
-import VueCompositionAPI from "@vue/composition-api";
 import moment from "moment";
 import CbhElementDiy from "@/plugins/cbh-element-diy";
 
-Vue.use(VueCompositionAPI);
 Vue.use(CbhElementDiy);
 Vue.config.productionTip = false;
 

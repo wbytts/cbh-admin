@@ -1,7 +1,7 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
-  // publicPath: '/cbh-admin',
+  publicPath: '/projects/cbh-admin',
   devServer: {
     watchFiles: {
       paths: ['src/**/*.*', 'public/**/*'],
@@ -13,6 +13,12 @@ module.exports = defineConfig({
       "/api": {
         target: "http://127.0.0.1:8888",
       },
+      "/flask": {
+        target: "http://127.0.0.1:9000",
+        pathRewrite: {
+          '^/flask': ''
+        }
+      }
     },
   },
 

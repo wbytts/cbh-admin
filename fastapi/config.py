@@ -36,6 +36,7 @@ class Config(BaseSettings):
     JWT_ALGORITHM = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES = 24 * 60  # 24 X 60 分钟
 
+    # 接口文档授权地址
     SWAGGER_UI_OAUTH2_REDIRECT_URL = "/api/v1/test/oath2"
 
     # 二维码过期时间

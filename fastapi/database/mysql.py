@@ -5,7 +5,7 @@ FilePath: /fastapi/database/mysql.py
 Author: 陈炳翰
 Date: 2022-07-14 21:25:59
 LastEditors: BingYi
-LastEditTime: 2022-08-12 12:01:09
+LastEditTime: 2022-10-16 02:05:05
 good good study 📚, day day up ✔️.
 '''
 # -*- coding:utf-8 -*-
@@ -34,27 +34,6 @@ DB_ORM_CONFIG = {
             },
             'echo': True,  # 数据库日志
         },
-        # "db2": {
-        #     'engine': 'tortoise.backends.mysql',
-        #     "credentials": {
-        #         'host': os.getenv('DB2_HOST', '127.0.0.1'),
-        #         'user': os.getenv('DB2_USER', 'root'),
-        #         'password': os.getenv('DB2_PASSWORD', '123456'),
-        #         'port': int(os.getenv('DB2_PORT', 3306)),
-        #         'database': os.getenv('DB2_DB', 'db2'),
-        #     }
-        # },
-        # "db3": {
-        #     'engine': 'tortoise.backends.mysql',
-        #     "credentials": {
-        #         'host': os.getenv('DB3_HOST', '127.0.0.1'),
-        #         'user': os.getenv('DB3_USER', 'root'),
-        #         'password': os.getenv('DB3_PASSWORD', '123456'),
-        #         'port': int(os.getenv('DB3_PORT', 3306)),
-        #         'database': os.getenv('DB3_DB', 'db3'),
-        #     }
-        # },
-
     },
     "apps": {
         "base": {

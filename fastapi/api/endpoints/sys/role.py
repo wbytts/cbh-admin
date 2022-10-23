@@ -28,9 +28,8 @@ async def all_roles_options(user_id: int = Query(None)):
     user_roles = []
     if user_id:
         # 当前用户角色
-        user_role = await Role.filter(user__id=user_id, role_status=True).values_list(
-            "id"
-        )
+        user_role = await Role.filter(user__id=user_id, role_status=True).values_list("id")
+
         user_roles = [i[0] for i in user_role]
     data = {"all_role": roles, "user_roles": user_roles}
     return success(msg="所有角色下拉选项专用", data=data)
